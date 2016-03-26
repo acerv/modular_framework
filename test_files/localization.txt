@@ -1,0 +1,11 @@
+[locale]
+
+Save[en]=save
+Open[en]=open
+Close[en]=close
+Exit[en]=exit
+
+Save[it]=salva
+Open[it]=apri
+Close[it]=chiudi
+Exit[it]=esci
