@@ -36,16 +36,16 @@ The user interface has the following components:
 ## Module
 A module is a part of the framework that's loaded at run-time. It contains its own setup, config, panels of the user
 interface, and it's defined inside the file module.h. The module can be splitted in the following 3 parts:
-1. configuration: it contains config and setup of the module
-2. logic: it contains the logic of the module, like algorithms
-3. graphics: it contains the UI controls
+  1. configuration: it contains config and setup of the module
+  2. logic: it contains the logic of the module, like algorithms
+  3. graphics: it contains the UI controls
 
 Every module is loaded by the engine and it's initialized as following:
-1. setup the module by calling the "setup" routine
-2. load the configuration by calling the "conf\_load\_config" routine
-3. load the setup by calling the "conf\_load\_setup" routine
-4. initialize the module's logic by calling the "login\_run" routine
-5. initialize the module's UI by calling the "graphic\_run" routine
+  1. setup the module by calling the "setup" routine
+  2. load the configuration by calling the "conf\_load\_config" routine
+  3. load the setup by calling the "conf\_load\_setup" routine
+  4. initialize the module's logic by calling the "login\_run" routine
+  5. initialize the module's UI by calling the "graphic\_run" routine
 
 In the logic initialization, it's possible to load algorithms according with the configuration or setup.
 In the graphics initialization, it's possible to load controls into the config panel, setup panel, test panel and base
@@ -59,8 +59,11 @@ An example of the engine initialization can be found in the tester.c source code
 ## Credits
 Part of the engine has been thought with Gianfranco Gallizia (aka. skyglobe) in the 2013-2014 and, initially, it was a C# implementation. 
 I ported the source code into C using GLib to make it multi-platform.
+
 https://github.com/skyglobe
 
 ## Links
+
 https://developer.gnome.org/glib/
+
 https://developer.gnome.org/glib/stable/glib-Dynamic-Loading-of-Modules.html
