@@ -33,12 +33,25 @@ TEST_MODULE_LIB=$(addprefix $(SRC_DIR)/,libtestmodule.so)
 TEST_EXECUTABLE=$(addprefix $(BUILD_DIR)/,tester)
 TEST_FILES=$(addprefix $(TEST_DIR)/,*)
 
-test: $(TEST_OBJECTS)
-	$(MK_BUILD_DIR) && \
-	$(CC) $(TEST_MODULE_SRC) $(TEST_MODULE_CFLAGS) -o $(TEST_MODULE_LIB) && \
-	mv $(TEST_MODULE_LIB) $(TEST_DIR) && \
-	cp -rf $(TEST_FILES) $(BUILD_DIR) && \
-	$(CC) $(TEST_OBJECTS) $(DEBUG_CFLAGS) $(CFLAGS) -o $(TEST_EXECUTABLE) 
+.PHONY: all test
+
+all: test
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR):
+	$(MK_BUILD_DIR)
+
+$(TEST_MODULE_LIB): $(TEST_MODULE_SRC)
+	$(CC) $(TEST_MODULE_CFLAGS) $(TEST_MODULE_SRC) -o $@
+
+$(TEST_EXECUTABLE): $(TEST_OBJECTS) $(TEST_MODULE_LIB)
+	$(CC) $(CFLAGS) $(TEST_OBJECTS) -o $@
+
+test: $(BUILD_DIR) $(TEST_EXECUTABLE)
+	cp $(TEST_MODULE_LIB) $(TEST_DIR)/ && \
+	cp -rf $(TEST_FILES) $(BUILD_DIR)
 
 clean:
 	rm -rf $(TEST_OBJECTS) $(LIBS_OBJECT) $(ALL_OBJECTS) $(BUILD_DIR)
