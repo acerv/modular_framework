@@ -23,7 +23,7 @@
 #include "utils.h"
 
 /* The message handler */
-struct _MessageHandler {
+struct MessageHandler_type {
     GHashTable* dictionary;
 };
 

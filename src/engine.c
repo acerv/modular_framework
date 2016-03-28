@@ -43,7 +43,7 @@ static const char* CONF_SETUP_FORM_CLOSING = "conf_setup_form_closing";
 static const char* CONF_CONFIG_FORM_CLOSING = "conf_config_form_closing";
 
 /* Engine data */
-struct _Engine {
+struct Engine_type {
     int initialized;
     int mode;
 

@@ -23,7 +23,7 @@
 #include "utils.h"
 
 /* Define the abstract data type */
-struct _CfgFile {
+struct CfgFile_type {
     const char* file;
     const char* name;
     GHashTable* data;

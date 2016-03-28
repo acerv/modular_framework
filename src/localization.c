@@ -26,7 +26,7 @@
 #define DEFAULT_GROUP "locale"
 
 /* The localization handler */
-struct _LocalizationHandler  {
+struct LocalizationHandler_type  {
     char* path;
     char* language;
     GKeyFile* file;

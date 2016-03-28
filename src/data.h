@@ -21,8 +21,8 @@
 #define DATA_H
 
 /* Abstract data type that rapresents the data manager */
-struct _DataHandler;
-typedef struct _DataHandler DataHandler;
+struct DataHandler_type;
+typedef struct DataHandler_type DataHandler;
 
 /* Event handlers */
 typedef struct {

@@ -21,8 +21,8 @@
 #define MESSAGES_H
 
 /* Abstract data type that rapresents the message handler */
-struct _MessageHandler;
-typedef struct _MessageHandler MessageHandler;
+struct MessageHandler_type;
+typedef struct MessageHandler_type MessageHandler;
 
 typedef struct {
 	void* field; 	/* data field */

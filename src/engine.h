@@ -23,8 +23,8 @@
 #include "module.h"
 
 /* Abstract data type that rapresents the Engine */
-struct _Engine;
-typedef struct _Engine Engine;
+struct Engine_type;
+typedef struct Engine_type Engine;
 
 /* Engine modes */
 enum {

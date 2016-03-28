@@ -21,8 +21,8 @@
 #define LOCALIZATION_H
 
 /* Abstract data type that rapresents the localization handler */
-struct _LocalizationHandler;
-typedef struct _LocalizationHandler LocalizationHandler;
+struct LocalizationHandler_type;
+typedef struct LocalizationHandler_type LocalizationHandler;
 
 /* Creates a localization handler */
 LocalizationHandler* lh_new(const char* path, const char* language);

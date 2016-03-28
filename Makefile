@@ -30,15 +30,29 @@ TEST_SOURCES=$(addprefix $(SRC_DIR)/,utils.c messages.c data.c localization.c en
 TEST_OBJECTS=$(addprefix $(SRC_DIR)/,utils.o messages.o data.o localization.o engine.o config.o tester.o)
 TEST_MODULE_SRC=$(addprefix $(SRC_DIR)/,test_module.c)
 TEST_MODULE_LIB=$(addprefix $(SRC_DIR)/,libtestmodule.so)
+BUILT_TEST_MODULE_LIB=$(addprefix $(TEST_DIR)/,libtestmodule.so)
 TEST_EXECUTABLE=$(addprefix $(BUILD_DIR)/,tester)
 TEST_FILES=$(addprefix $(TEST_DIR)/,*)
 
-test: $(TEST_OBJECTS)
-	$(MK_BUILD_DIR) && \
-	$(CC) $(TEST_MODULE_SRC) $(TEST_MODULE_CFLAGS) -o $(TEST_MODULE_LIB) && \
-	mv $(TEST_MODULE_LIB) $(TEST_DIR) && \
-	cp -rf $(TEST_FILES) $(BUILD_DIR) && \
-	$(CC) $(TEST_OBJECTS) $(DEBUG_CFLAGS) $(CFLAGS) -o $(TEST_EXECUTABLE) 
+.PHONY: all test
+
+all: test
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR):
+	$(MK_BUILD_DIR)
+
+$(TEST_MODULE_LIB): $(TEST_MODULE_SRC)
+	$(CC) $(TEST_MODULE_CFLAGS) $(TEST_MODULE_SRC) -o $@
+
+$(TEST_EXECUTABLE): $(TEST_OBJECTS) $(TEST_MODULE_LIB)
+	$(CC) $(CFLAGS) $(TEST_OBJECTS) -o $@
+
+test: $(BUILD_DIR) $(TEST_EXECUTABLE)
+	rsync --remove-source-files $(TEST_MODULE_LIB) $(TEST_DIR)/ && \
+	cp -rf $(TEST_FILES) $(BUILD_DIR)
 
 clean:
-	rm -rf $(TEST_OBJECTS) $(LIBS_OBJECT) $(ALL_OBJECTS) $(BUILD_DIR)
+	rm -rf $(TEST_OBJECTS) $(BUILT_TEST_MODULE_LIB) $(LIBS_OBJECT) $(ALL_OBJECTS) $(BUILD_DIR)

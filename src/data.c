@@ -31,7 +31,7 @@
 #define DEFAULT_MAXIMUM_DATA 30
 
 /* The data handler */
-struct _DataHandler {
+struct DataHandler_type {
     /* Maximum data */
     unsigned int maxData;
 

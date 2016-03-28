@@ -21,8 +21,8 @@
 #define CONFIG_H
 
 /* Abstract data type that rapresents the configuration file */
-struct _CfgFile;
-typedef struct _CfgFile CfgFile;
+struct CfgFile_type;
+typedef struct CfgFile_type CfgFile;
 
 /* Creates a custom configuration */
 CfgFile* cfg_new(const char* file, const char* name);
