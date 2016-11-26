@@ -1,0 +1,15 @@
+language: C
+dist: trusty
+
+addons:
+  apt:
+    - make 
+    - libglib2.0-dev
+
+compiler:
+  - gcc
+
+script:
+  - make clean
+  - make
+  - make test
