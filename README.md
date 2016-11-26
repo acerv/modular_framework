@@ -1,5 +1,8 @@
 
 # Introduction
+
+[![Build Status](https://travis-ci.org/acerv/modular_framework.svg?branch=master)](https://travis-ci.org/acerv/modular_framework)
+
 This framework has been created to provide a generic system that can be used for desktop applications. 
 The system provides some tools as the following ones:
 * generic data handle
