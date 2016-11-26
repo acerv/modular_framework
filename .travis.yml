@@ -4,6 +4,7 @@ dist: trusty
 
 addons:
   apt:
+    packages:
     - make 
     - libglib2.0-dev
 
